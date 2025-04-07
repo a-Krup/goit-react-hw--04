@@ -1,0 +1,29 @@
+.header {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 15px;
+  }
+  
+  .input {
+    width: 400px;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-left: 10px;
+    cursor: pointer;
+    background-color: #171817;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: #d3e0e3;
+    color:rgb(17, 18, 18)
+  }

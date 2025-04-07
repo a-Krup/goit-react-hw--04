@@ -1,0 +1,74 @@
+.modalContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    gap: 24px;
+    padding: 20px;
+    background-color: #ccd3db;
+    
+  }
+  
+  .modalContent img {
+    width: 800px;
+    max-height: 550px;
+    height: auto;  /* Висота буде автоматично змінюватись, зберігаючи пропорції */
+    display: block;
+    object-fit: contain; /*  Зберігає пропорції зображення і поміщає його в контейнер */
+    border-radius: 8px;
+  }
+  
+  .modalInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    color: #333;
+    width: 220px;
+  }
+  
+  .modalInfo h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .author,
+  .likes,
+  .createdAt,
+  .location {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .location {
+    font-style: italic;
+  }
+
+
+/* Кнопка закриття */
+.buttonClose {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 0; /* Важливо, щоб padding не впливав на розміри */
+    width: 48px;
+    height: 48px;
+    font-size: 44px; /* Зменшити розмір шрифта для кращого вигляду */
+    background:none;
+    border: none;
+    border-radius: 50%; /* Кругла форма */
+    color: #ff0000;
+    cursor: pointer;
+    font-weight: bold;
+    transition: color 0.3s;
+    display: flex;
+    justify-content: center;
+   align-items: center; 
+}
+  
+  
+  /* Стиль кнопки при наведенні */
+  .buttonClose:hover {
+    color: #44474a;
+    background-color: #ccd3db;
+  }
+ 
