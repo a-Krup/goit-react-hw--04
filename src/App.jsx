@@ -1,83 +1,83 @@
-
-import React, { useState, useEffect } from 'react';
-import { Toaster, toast } from 'react-hot-toast';
-import SearchBar from './components/SearchBar/SearchBar';
-import ImageGallery from './components/ImageGallery/ImageGallery';
-import Loader from './components/Loader/Loader';
-import ErrorMessage from './components/ErrorMessage/ErrorMessage';
-import LoadMoreBtn from './components/LoadMoreBtn/LoadMoreBtn';
-import ImageModal from './components/ImageModal/ImageModal';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { Toaster, toast } from "react-hot-toast";
+import SearchBar from "./components/SearchBar/SearchBar";
+import ImageGallery from "./components/ImageGallery/ImageGallery";
+import Loader from "./components/Loader/Loader";
+import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
+import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
+import ImageModal from "./components/ImageModal/ImageModal";
+import { fetchImages } from "./services/api";
+import "./App.css";
 
 const App = () => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [query, setQuery] = useState('');
-  const [error, setError] = useState('');
+  const [query, setQuery] = useState("");
+  const [error, setError] = useState("");
   const [page, setPage] = useState(1);
   const [selectedImage, setSelectedImage] = useState(null);
-  
-  const accessKey = 'u1G_rZf1UiHkHYgpRPjToRSqezYhMCuh_LMjjlpGTZg'; // Вставте свій ключ
+  const [totalPages, setTotalPages] = useState(0);
 
-  // Використовуємо useEffect для запиту зображень
+  const accessKey = "u1G_rZf1UiHkHYgpRPjToRSqezYhMCuh_LMjjlpGTZg";
+
   useEffect(() => {
-    if (!query) return;  // Якщо запит пустий, не робимо запитів
-    
-    const fetchImages = async () => {
+    if (!query) return;
+
+    const getImages = async () => {
       setLoading(true);
-      setError('');
+      setError("");
       try {
-        const response = await fetch(`https://api.unsplash.com/search/photos?page=${page}&query=${query}&client_id=${accessKey}`);
-        if (!response.ok) throw new Error('Не вдалося отримати дані');
-        
-        const data = await response.json();
-        setImages(prev => (page === 1 ? data.results : [...prev, ...data.results]));  // Оновлюємо масив зображень
+        const data = await fetchImages(query, page, accessKey);
+        setImages((prev) =>
+          page === 1 ? data.results : [...prev, ...data.results]
+        );
+        setTotalPages(data.total_pages);
       } catch (err) {
         console.error(err);
-        setError('Щось пішло не так! Спробуйте знову.');
+        setError("Something went wrong! Try again.");
       } finally {
         setLoading(false);
       }
     };
 
-    fetchImages();
-  }, [query, page]); // Запит буде відправлятися при зміні query або page
+    getImages();
+  }, [query, page]);
 
-  // Обробка пошукового запиту
   const handleSearchSubmit = (searchQuery) => {
-    if (searchQuery.trim() === '') {
-      toast.error('Будь ласка, введіть текст для пошуку');
+    if (searchQuery.trim() === "") {
+      toast.error("Please enter the text to search for.");
       return;
     }
     setQuery(searchQuery);
-    setPage(1);  // Скидаємо сторінку на 1 при новому пошуку
-    setImages([]);  // Очищаємо старі результати пошуку
+    setPage(1);
+    setImages([]);
   };
 
-  // Завантаження додаткових зображень
-  const handleLoadMore = async () => {
-    setPage(prevPage => prevPage + 1);  // Інкрементуємо сторінку
+  const handleLoadMore = () => {
+    setPage((prevPage) => prevPage + 1);
   };
 
   return (
     <div>
       <Toaster />
       <SearchBar onSubmit={handleSearchSubmit} />
-      
-      {/* Показуємо Loader, якщо йде завантаження */}
-      {loading && <Loader />}
-      
-      {/* Показуємо помилку, якщо є */}
+
+      {loading && <Loader size={50} color="#3498db" loading={loading} />}
+
       {error && <ErrorMessage message={error} />}
-      
-      {/* Виводимо галерею зображень */}
+
       <ImageGallery images={images} onImageClick={setSelectedImage} />
-      
-      {/* Кнопка "Load More", якщо зображення є та завантаження завершено */}
-      {images.length > 0 && !loading && <LoadMoreBtn onClick={handleLoadMore} />}
-      
-      {/* Модальне вікно з зображенням, якщо воно вибране */}
-      {selectedImage && <ImageModal image={selectedImage} onClose={() => setSelectedImage(null)} />}
+
+      {images.length > 0 && !loading && page < totalPages && (
+        <LoadMoreBtn onClick={handleLoadMore} />
+      )}
+
+      {selectedImage && (
+        <ImageModal
+          image={selectedImage}
+          onClose={() => setSelectedImage(null)}
+        />
+      )}
     </div>
   );
 };

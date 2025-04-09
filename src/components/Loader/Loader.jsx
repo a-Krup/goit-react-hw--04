@@ -1,12 +1,14 @@
-import React from 'react';
-import { ClipLoader } from 'react-spinners';
-import styles from './Loader.module.css';
+import React from "react";
+import { ClipLoader } from "react-spinners";
+import styles from "./Loader.module.css";
 
-const Loader = () => {
+const Loader = ({ size = 50, color = "#000", loading = true }) => {
   return (
-    <div className={styles.loader}>
-      <ClipLoader size={50} color="#000" />
-    </div>
+    loading && (
+      <div className={styles.loader}>
+        <ClipLoader size={size} color={color} />
+      </div>
+    )
   );
 };
 

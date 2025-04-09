@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { toast } from 'react-hot-toast';
-import styles from './SearchBar.module.css';
+import React, { useState } from "react";
+import { toast } from "react-hot-toast";
+import styles from "./SearchBar.module.css";
 
 const SearchBar = ({ onSubmit }) => {
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
 
   const handleChange = (e) => {
     setInput(e.target.value);
@@ -11,8 +11,8 @@ const SearchBar = ({ onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (input.trim() === '') {
-      toast.error('Будь ласка, введіть текст для пошуку');
+    if (input.trim() === "") {
+      toast.error("Please enter the text to search for.");
       return;
     }
     onSubmit(input);
@@ -30,7 +30,9 @@ const SearchBar = ({ onSubmit }) => {
           autoFocus
           autoComplete="off"
         />
-        <button type="submit" className={styles.button}>Search</button>
+        <button type="submit" className={styles.button}>
+          Search
+        </button>
       </form>
     </header>
   );

@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './LoadMoreBtn.module.css';
+import React from "react";
+import styles from "./LoadMoreBtn.module.css";
 
 const LoadMoreBtn = ({ onClick }) => {
   return (

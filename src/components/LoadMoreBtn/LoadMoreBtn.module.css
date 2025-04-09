@@ -1,15 +1,15 @@
 .button {
-    display: block;
-    width: 200px;
-    padding: 10px;
-    margin: 20px auto;
-    background-color: #e5ebe5;
-    color: rgb(13, 13, 13);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .button:hover {
-    background-color: #3e403e;
-  }
+  display: block;
+  width: 200px;
+  padding: 10px;
+  margin: 20px auto;
+  background-color: #e5ebe5;
+  color: rgb(13, 13, 13);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #3e403e;
+}

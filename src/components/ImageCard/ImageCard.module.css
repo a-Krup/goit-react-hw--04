@@ -1,13 +1,13 @@
 .card {
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-  
-  .card img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
-  }
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
