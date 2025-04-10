@@ -60,20 +60,29 @@
   box-shadow: 0 0 0 2px rgba(100, 100, 255, 0.5);
 }
 
-@media (min-width: 1025px) {
+@media (min-width: 768px) {
   .modalContent {
     flex-direction: row;
-    justify-content: start;
-    gap: 36px;
-    min-width: 1025px;
-    width: 100%;
-    height: 550px;
-    padding: 0;
+    justify-content: space-between;
+    gap: 24px;
   }
+
   .modalContent img {
-    width: 820px;
+    height: 500px;
+    width: 450px;
   }
   .modalInfo {
     width: 220px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .modalContent {
+    justify-content: start;
+    gap: 48px;
+  }
+  .modalContent img {
+    width: 100%;
+    height: 550px;
   }
 }
