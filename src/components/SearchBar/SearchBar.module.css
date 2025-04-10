@@ -1,21 +1,24 @@
 .header {
   display: flex;
+  flex-direction: row;
   justify-content: center;
-  padding: 20px;
+  padding: 8px;
   background-color: #f0f0f0;
   border-radius: 15px;
 }
 
 .input {
-  width: 400px;
-  padding: 10px;
-  font-size: 16px;
+  width: 120px;
+  padding: 8px;
+  font-size: 12px;
+  border-radius: 5px;
+  background-color: #3c3c3c;
 }
 
 .button {
-  padding: 10px 20px;
-  font-size: 16px;
-  margin-left: 10px;
+  padding: 5px 10px;
+  font-size: 12px;
+  margin-left: 5px;
   cursor: pointer;
   background-color: #171817;
   color: white;
@@ -26,4 +29,34 @@
 button:hover {
   background-color: #d3e0e3;
   color: rgb(17, 18, 18);
+}
+
+@media (min-width: 768px) {
+  .header {
+    padding: 16px;
+  }
+  .input {
+    width: 280px;
+    padding: 10px;
+  }
+
+  .button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-left: 16px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .header {
+    padding: 20px;
+  }
+  .input {
+    width: 400px;
+    padding: 20px;
+  }
+
+  .button {
+    margin-left: 20px;
+  }
 }

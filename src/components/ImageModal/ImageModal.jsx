@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
+import { FiX } from 'react-icons/fi';
 import styles from "./ImageModal.module.css";
 
 const ImageModal = ({ image, onClose }) => {
@@ -46,12 +47,13 @@ const ImageModal = ({ image, onClose }) => {
               Location: {location.name || "Unknown"}
             </p>
           )}
-        </div>
+        </div>       
+        <button className={styles.buttonClose} onClick={onClose} aria-label="Close modal">
+  <FiX size={18} />
+</button>
       </div>
-
-      <button className={styles.buttonClose} onClick={onClose}>
-        ×
-      </button>
+     
+     
     </Modal>
   );
 };
